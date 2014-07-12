@@ -34,8 +34,12 @@ class Socialparser {
 		$response = $this->curl_call($data);
 		$entries = $response['responseData']['feed']['entries'];
 		$videos = array();
-		foreach($entries as $video){						
-			array_push($videos,$video);			
+		foreach($entries as $video){
+			$videocontent = array(
+				"title"	=> $video['title'],
+				"id" => substr( $video['link'], strrpos( $video['link'], '?v=' )+3, -22)
+			);						
+			array_push($videos,$videocontent);			
 		}
 		return $videos;
 	}		
@@ -46,10 +50,10 @@ class Socialparser {
 
 		require_once("twitteroauth.php");
 		 
-		$consumerkey = "";
-		$consumersecret = "";
-		$accesstoken = "";
-		$accesstokensecret = "";
+		$consumerkey = "YOUR API KEY";
+		$consumersecret = "YOUR API SECRET";
+		$accesstoken = "YOUR API ACCESS TOKEN";
+		$accesstokensecret = "YOUR API ACCESS TOKEN SECRET";
 		 
 		function getConnectionWithAccessToken($cons_key, $cons_secret, $oauth_token, $oauth_token_secret) {
 		  $connection = new TwitterOAuth($cons_key, $cons_secret, $oauth_token, $oauth_token_secret);
