@@ -25,14 +25,19 @@ class Socialparser {
 		return $posts;
 	}
 	/** END FACEBOOK PARSE **/
-	
+
 	/** YOUTUBE PARSE **/		
 	public function youtube($id,$num){
 		$loader = 'https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&num='.$num.'&q=';
 		$UriEncoded= $this->encodeURIComponent('https://gdata.youtube.com/feeds/base/users/'.$id.'/uploads?alt=rss&v=2&orderby=published&client=ytapi-youtube-profile');
 		$data = $loader.$UriEncoded;
 		$response = $this->curl_call($data);
-		return $response;
+		$entries = $response['responseData']['feed']['entries'];
+		$videos = array();
+		foreach($entries as $video){						
+			array_push($videos,$video);			
+		}
+		return $videos;
 	}		
 	/** END YOUTUBE PARSE **/			
 
