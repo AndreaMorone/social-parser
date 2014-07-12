@@ -1,18 +1,14 @@
 <?
 
-include_once('socialparser.php');
+$socialparser = new Socialparser();  
 
-$socialparser = new Socialparser();
+$facebook_posts = $socialparser->facebook('FACEBOOK PAGE ID',NUMBER OF POSTS);  
 
-$facebook_posts = $socialparser->facebook('535049976526453',15);
+$youtube_videos = $socialparser->youtube('YOUTUBE USERNAME',NUMBER OF POSTS);  
 
-print_r($facebook_posts);
+$tweets =  $socialparser->twitter('TWITTER USERNAME',NUMBER OF POSTS);  
 
-$youtube_videos = $socialparser->youtube('SnoopDogg',1);
+$google_posts = $socialparser->google('GOOGLE PLUS ID',NUMBER OF POSTS);
 
-//print_r($youtube_videos);
-$tweets = $socialparser->twitter('andreamorone88',5);
-
-//$google = $socialparser->google('+Ferrari',5);
 
 ?>
