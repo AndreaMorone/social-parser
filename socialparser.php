@@ -43,10 +43,10 @@ class Socialparser {
 		 
 		$twitteruser = "ValeYellow46";
 		$notweets = 5;
-		$consumerkey = "G2QuqsaHQfMHwGmJsqCdw";
-		$consumersecret = "2hlFsXt7pX1dnDgiIgiJE3TDCtefY2LdONX0mKszY";
-		$accesstoken = "451443299-3cCXp1ERKd3TzHpoXimiyKDzAxUcSMIBHOAFAM9Q";
-		$accesstokensecret = "kbH53caOfwaybI64lsyqAWXYuhA5Ehp0nbLqA6Ngdyo";
+		$consumerkey = "";
+		$consumersecret = "";
+		$accesstoken = "";
+		$accesstokensecret = "";
 		 
 		function getConnectionWithAccessToken($cons_key, $cons_secret, $oauth_token, $oauth_token_secret) {
 		  $connection = new TwitterOAuth($cons_key, $cons_secret, $oauth_token, $oauth_token_secret);
@@ -73,7 +73,7 @@ class Socialparser {
 
 	/** GOOGLE PLUS PARSE **/				
 	public function google($id,$num){
-		$key = 'AIzaSyBkpHZC-1f5PK36vUr9Y_HGdnbLs5pglEY';
+		$key = '';
 		$url = 'https://www.googleapis.com/plus/v1/people/'.$id.'/activities/public?key='.$key.'&maxResults='.$num;
 		$response = $this->curl_call($url);		
 		print_r($response);
