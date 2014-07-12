@@ -5,7 +5,7 @@ Class Name: Social Parser
 Author: Andrea Morone
 Author URI: http://andreamorone.github.io
 Project URI: http://andreamorone.github.io/social-parser 
-Description: This class can retrieve latest posts from facebook, twitter, youtube and google plus.
+Description: This class can retrieve latest posts from facebook, twitter, youtube and google plus. This is base implementation, you can add yuor own function or extend existing. For example you can check is response is empty or add more social networks.
 */
 
 
@@ -58,19 +58,24 @@ class Socialparser {
 		 
 		$connection = getConnectionWithAccessToken($consumerkey, $consumersecret, $accesstoken, $accesstokensecret);
 			
-		$tweets = $connection->get('statuses/user_timeline', array('screen_name' => $id, 'exclude_replies' => 'true', 'include_rts' => 'true', 'count' => $num));
+		$returnedtweets = $connection->get('statuses/user_timeline', array('screen_name' => $id, 'exclude_replies' => 'false', 'include_rts' => 'true', 'count' => $num));
 				
-		if(!empty($tweets)) {
-		    foreach($tweets as $tweet) {
+		$tweets = array();		
+		if(!empty($returnedtweets)) {
+		    foreach($returnedtweets as $tweet) {
 		    	$tweetImage = $tweet->entities->media[0]->media_url;
 		        $tweetText = $tweet->text;
-		        $tweetText = preg_replace("#(http://|(www.))(([^s<]{4,68})[^s<]*)#", '<a href="http://$2$3" target="_blank">$1$2$4</a>', $tweetText);
-		        $tweetText = preg_replace("/@(w+)/", '<a href="http://www.twitter.com/$1" target="_blank">@$1</a>', $tweetText);
-		        $tweetText = preg_replace("/#(w+)/", '<a href="http://search.twitter.com/search?q=$1" target="_blank">#$1</a>', $tweetText);
-		        echo $tweetText.'<br>';
-		        echo $tweetImage.'<br>';
+				$tweetText = preg_replace("/\B#(.\w+)\w*/", '<a href="https://twitter.com/search?q=$1" target="_blank">$0</a>', $tweetText);		        
+		        $tweetText = preg_replace("#(http://|(www.))(([^s<]{4,68})[^s<]*)#", '<a href="https://$2$3" target="_blank">$1$2$4</a>', $tweetText);
+		        $tweetText = preg_replace("/\B@(.\w+)\w*/", '<a href="https://www.twitter.com/$1" target="_blank">@$1</a>', $tweetText);		        
+		        $tweetcontent = array(
+		        	'text'	=>	$tweetText ,
+		        	'image'	=>	$tweetImage		        	
+		        );
+		        array_push($tweets, $tweetcontent);
 		    }
-		}		
+		}
+		return $tweets;		
 	}
 	/** END TWITTER PARSE **/	
 
