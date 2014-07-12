@@ -32,7 +32,7 @@ class Socialparser {
 		$UriEncoded= $this->encodeURIComponent('https://gdata.youtube.com/feeds/base/users/'.$id.'/uploads?alt=rss&v=2&orderby=published&client=ytapi-youtube-profile');
 		$data = $loader.$UriEncoded;
 		$response = $this->curl_call($data);
-		print_r($response);
+		return $response;
 	}		
 	/** END YOUTUBE PARSE **/			
 
