@@ -25,7 +25,7 @@ class Socialparser {
 		return $posts;
 	}
 	/** END FACEBOOK PARSE **/
-
+	
 	/** YOUTUBE PARSE **/		
 	public function youtube($id,$num){
 		$loader = 'https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&num='.$num.'&q=';
@@ -54,7 +54,7 @@ class Socialparser {
 		$consumersecret = "YOUR API SECRET";
 		$accesstoken = "YOUR API ACCESS TOKEN";
 		$accesstokensecret = "YOUR API ACCESS TOKEN SECRET";
-		 
+				 
 		function getConnectionWithAccessToken($cons_key, $cons_secret, $oauth_token, $oauth_token_secret) {
 		  $connection = new TwitterOAuth($cons_key, $cons_secret, $oauth_token, $oauth_token_secret);
 		  return $connection;
