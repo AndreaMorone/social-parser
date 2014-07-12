@@ -83,8 +83,18 @@ class Socialparser {
 	public function google($id,$num){
 		$key = 'INSERT YOUR GOOGLE API KEY';
 		$url = 'https://www.googleapis.com/plus/v1/people/'.$id.'/activities/public?key='.$key.'&maxResults='.$num;
-		$response = $this->curl_call($url);		
-		print_r($response);
+		$response = $this->curl_call($url);				
+		$entries = $response['items'];
+		$posts = array();
+		foreach($entries as $post){
+			$postcontent = array(
+				'title'	=>	$post['title'],
+				'url' 	=> 	$post['url'],
+				'image'	=>	$post['object']['attachments'][0]['fullImage']['url']
+			);					
+			array_push($posts,$postcontent);			
+		}
+		return $posts;		
 	}
 	/** END GOOGLE PLUS PARSE **/		
 
