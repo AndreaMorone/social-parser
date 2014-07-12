@@ -48,7 +48,7 @@ class Socialparser {
 	/** TWITTER PARSE **/		
 	public function twitter($id,$num){
 
-		require_once("twitteroauth.php");
+		require_once("twitter_library/twitteroauth.php");
 		 
 		$consumerkey = "YOUR API KEY";
 		$consumersecret = "YOUR API SECRET";
