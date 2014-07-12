@@ -9,3 +9,6 @@ To read the entire development explained step by step go [here](http://c0desn1p.
 
 If you want to know more about how to use it, read the documentation [here](http://andreamorone.github.io/social-parser/).
 
+External twitter library by  
+Abraham Williams  
+[http://abrah.am](http://abrah.am)
