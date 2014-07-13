@@ -1,8 +1,8 @@
 PHP Social Parser
 =============
 
-PHP class able to parse latest posts from facebook pages, youtube users, twitter users and google plus users.  
-This Class has four main methods, one for each social networks, and other two auxiliary methods necessary in order to accomplish some operations.
+PHP class able to parse latest posts from facebook pages, youtube user updates, user tweets and google plus user updates.
+This Class has four main methods, one for each social network, and other two auxiliary methods necessary in order to accomplish some operations.
 The idea is to retrieve a given number of posts or status updates from the social networks listed above. So each method will have two attributes : the username or user id from who we want to parse status updates and the number of posts we want to retrieve.  
 
 To read the entire development explained step by step go [here](http://c0desn1p.com/retrieve-latest-posts-from-social-networks-with-php/).
